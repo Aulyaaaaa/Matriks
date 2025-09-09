@@ -1,0 +1,14 @@
+# Abaikan file log
+*.log
+
+# Abaikan file sementara 
+*.tmp
+*.swp
+
+# Abaikan folder dataset besar
+/data/
+*.csv
+
+# Abaikan file python cache
+__pycache__/
+*.pyc
