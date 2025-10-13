@@ -12,11 +12,10 @@ Berisi fungsi-fungsi operasi pada matriks, seperti:
 
 from .transpose import transpose_matrix
 from .inverse import inverse_matrix
-from .regression import linear_regression, predict_price  # jika kamu punya file regression.py
+from .linier_regression import regresi_emas 
 
-_all_ = [
+__all__ = [
     "transpose_matrix",
     "inverse_matrix",
-    "linear_regression",
-    "predict_price"
+    "regresi_emas"
 ]
