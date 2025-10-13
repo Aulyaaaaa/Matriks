@@ -10,12 +10,13 @@ Berisi fungsi-fungsi operasi pada matriks, seperti:
 - Regresi linear (prediksi harga emas)
 """
 
-from .transpose import transpose_matrix
+from .transpose import matrix_transpose, transpose_from_csv
 from .inverse import inverse_matrix
 from .linier_regression import regresi_emas 
 
 __all__ = [
-    "transpose_matrix",
+    "matrix_transpose",
+    "transpose_from_csv",
     "inverse_matrix",
     "regresi_emas"
 ]
