@@ -10,7 +10,7 @@ def regresi_emas(csv_path, days_ahead=7):
     df = pd.read_csv(csv_path, delimiter=';')
 
     # 2. Bersihkan nama kolom (hilangkan spasi dan ubah jadi lowercase)
-    df.columns = [col.strip().lower() for col in df.columns]
+    df.columns = [col.strip().lower().replace(' ', '') for col in df.columns]
 
     # 3. Ubah kolom harga jadi numerik
     # contoh "1.129.000,00" → "1129000.00"
@@ -24,7 +24,7 @@ def regresi_emas(csv_path, days_ahead=7):
     df['hari_ke'] = (df['tanggal'] - df['tanggal'].min()).dt.days
 
     # 5. Siapkan X dan y
-    X = df[['hari_ke']].values
+    X = df[['hari_ke']].values.reshape(-1, 1)
     y = df['harga'].values
 
     # 6. Buat model regresi linear
@@ -42,8 +42,8 @@ def regresi_emas(csv_path, days_ahead=7):
 
     # 9. Visualisasi hasilnya
     fig, ax = plt.subplots()
-    ax.plot(df['tanggal'], df['harga'], label='Data Aktual')
-    ax.plot(df_future['tanggal'], df_future['harga_prediksi'], '--', label='Prediksi')
+    ax.plot(df['tanggal'].values, df['harga'].values, label='Data Aktual')
+    ax.plot(df_future['tanggal'].values, df_future['harga_prediksi'].values, '--', label='Prediksi')
     ax.set_title('Prediksi Harga Emas')
     ax.set_xlabel('Tanggal')
     ax.set_ylabel('Harga (Rupiah)')
