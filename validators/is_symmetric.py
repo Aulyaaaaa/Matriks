@@ -1,3 +1,4 @@
+from validators.is_square import is_square
 def is_symmetric(matrix):
     jumlah_baris = len(matrix)
     jumlah_kolom = len(matrix[0])
