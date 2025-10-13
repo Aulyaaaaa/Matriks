@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediksi Harga Emas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 50%; margin-top: 20px; }
+        th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        img { margin-top: 30px; width: 600px; }
+    </style>
+</head>
+<body>
+    <h1>📈 Prediksi Harga Emas (Regresi Linier)</h1>
+
+    <p><strong>Koefisien:</strong> {{ result.koefisien }}</p>
+    <p><strong>Intercept:</strong> {{ result.intercept }}</p>
+
+    <h3>Prediksi 7 Hari Kedepan:</h3>
+    <table>
+        <tr>
+            <th>Tanggal</th>
+            <th>Harga Prediksi (Rp)</th>
+        </tr>
+        {% for p in result.prediksi %}
+        <tr>
+            <td>{{ p.tanggal.strftime('%d-%m-%Y') }}</td>
+            <td>{{ "%.2f"|format(p.harga_prediksi) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <img src="data:image/png;base64,{{ result.plot }}" alt="Grafik Prediksi">
+</body>
+</html>

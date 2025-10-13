@@ -1,4 +1,6 @@
 # operations/__init__.py
+# subpackage for operation modules
+# operations/_init_.py
 """
 Package operations untuk proyek Matriks.
 
@@ -12,7 +14,7 @@ from .transpose import transpose_matrix
 from .inverse import inverse_matrix
 from .regression import linear_regression, predict_price  # jika kamu punya file regression.py
 
-__all__ = [
+_all_ = [
     "transpose_matrix",
     "inverse_matrix",
     "linear_regression",
