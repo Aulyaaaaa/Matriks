@@ -1,5 +1,17 @@
-# Fungsi: export_to_csv(matriks, nama_file)
-# 1. Buka file dengan nama 'nama_file' dalam mode tulis.
-# 2. Buat objek 'writer' CSV.
-# 3. Tuliskan setiap baris data dari 'matriks' ke dalam file
-# 4. Tampilkan pesan sukses
+# csv_exporter.py
+import csv
+
+def export_to_csv(matriks, nama_file):
+    """
+    Fungsi untuk mengekspor data matriks ke file CSV.
+    :param matriks: Objek matriks (harus memiliki attribute .data berupa list of lists)
+    :param nama_file: Nama file output CSV.
+    """
+    try:
+        with open(nama_file, 'w', newline='') as file:
+            writer = csv.writer(file)
+            for row in matriks.data:
+                writer.writerow(row)
+        print(f"✅ Matriks berhasil diekspor ke {nama_file}")
+    except Exception as e:
+        print(f"❌ Terjadi kesalahan saat mengekspor ke CSV: {e}")
