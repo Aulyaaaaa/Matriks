@@ -1,7 +1,7 @@
 # operations/transpose.py
 """
 Modul transpose.py
-Berfungsi untuk menghitung transpose dari matriks (pertukaran baris ↔ kolom)
+Berfungsi untuk menghitung transpose matriks dari dataset emas (datasetemas.csv)
 """
 
 import numpy as np
@@ -27,10 +27,12 @@ def matrix_transpose(matrix_data):
 
 def transpose_from_csv(csv_path):
     """
-    Membaca file CSV dan menghitung transpose dari data numerik di dalamnya
+    Membaca file CSV dan menghitung transpose dari data numerik di dalamnya.
     """
     try:
         df = pd.read_csv(csv_path, delimiter=';')
+
+        # Ambil kolom numerik saja
         numeric_df = df.select_dtypes(include='number')
 
         if numeric_df.empty:
@@ -43,10 +45,8 @@ def transpose_from_csv(csv_path):
 
 
 if __name__ == "__main__":
-    # Tes lokal
-    contoh = [[1, 2, 3], [4, 5, 6]]
-    print(matrix_transpose(contoh))
-
-    # Tes dari CSV datasetemas.csv
-    result = transpose_from_csv("datasetemas.csv")
+    # Tes langsung dengan dataset emas kamu
+    csv_path = "datasetemas.csv"
+    print(f"Menghitung transpose dari file: {csv_path}")
+    result = transpose_from_csv(csv_path)
     print(result)
