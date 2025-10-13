@@ -11,12 +11,12 @@ Berisi fungsi-fungsi operasi pada matriks, seperti:
 """
 
 from .transpose import matrix_transpose, transpose_from_csv
-from .inverse import inverse_matrix
+from .inverse import matrix_inverse
 from .linier_regression import regresi_emas 
 
 __all__ = [
     "matrix_transpose",
     "transpose_from_csv",
-    "inverse_matrix",
+    "matrix_inverse",
     "regresi_emas"
 ]
