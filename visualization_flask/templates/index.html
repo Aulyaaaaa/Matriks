@@ -1,38 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediksi Harga Emas</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { color: #333; }
-        table { border-collapse: collapse; width: 50%; margin-top: 20px; }
-        th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
-        th { background-color: #f2f2f2; }
-        img { margin-top: 30px; width: 600px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Prediksi Harga Emas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    h1 {
+      color: #333;
+      margin-top: 20px;
+    }
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+      width: 95%;
+      height: 80%;
+      padding: 10px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 6px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .info-box {
+      background: #f9f9f9;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    img {
+      width: 100%;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
-    <h1>📈 Prediksi Harga Emas (Regresi Linier)</h1>
+  <h1>📈 Prediksi Harga Emas (Regresi Linier)</h1>
 
-    <p><strong>Koefisien:</strong> {{ result.koefisien }}</p>
-    <p><strong>Intercept:</strong> {{ result.intercept }}</p>
+  <div class="dashboard">
+    <!-- Kartu kiri: tabel prediksi -->
+    <div class="card">
+      <p><strong>Koefisien:</strong> {{ result.koefisien }}</p>
+      <p><strong>Intercept:</strong> {{ result.intercept }}</p>
 
-    <h3>Prediksi 7 Hari Kedepan:</h3>
-    <table>
+      <div class="info-box">
+        <strong>Harga Rata-rata 7 Hari Prediksi:</strong> Rp {{ result.avg_prediksi }}
+      </div>
+
+      <h3>Prediksi 7 Hari Kedepan:</h3>
+      <table>
         <tr>
-            <th>Tanggal</th>
-            <th>Harga Prediksi (Rp)</th>
+          <th>Tanggal</th>
+          <th>Harga Prediksi (Rp)</th>
         </tr>
         {% for p in result.prediksi %}
         <tr>
-            <td>{{ p.tanggal.strftime('%d-%m-%Y') }}</td>
-            <td>{{ "%.2f"|format(p.harga_prediksi) }}</td>
+          <td>{{ p.tanggal.strftime('%d-%m-%Y') }}</td>
+          <td>{{ "%.2f"|format(p.harga_prediksi) }}</td>
         </tr>
         {% endfor %}
-    </table>
+      </table>
+    </div>
 
-    <img src="data:image/png;base64,{{ result.plot }}" alt="Grafik Prediksi">
+    <!-- Kartu kanan: dua grafik -->
+    <div class="card">
+      <h3>Visualisasi Data</h3>
+      <img src="data:image/png;base64,{{ result.plot }}" alt="Grafik Prediksi">
+      <img src="data:image/png;base64,{{ result.plot_top5 }}" alt="Top 5 Harga Tertinggi">
+    </div>
+  </div>
 </body>
 </html>
+

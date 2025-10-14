@@ -1,15 +1,16 @@
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 from flask import Flask, render_template
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from operations.linier_regression import regresi_emas
 
 app = Flask(__name__)
 
 @app.route('/')
 def home():
-    result = regresi_emas("datasetemas.csv", days_ahead=7)
+    csv_path = os.path.join(os.path.dirname(__file__), '..', 'datasetemas.csv')
+    result = regresi_emas(csv_path, days_ahead=7)
     return render_template('index.html', result=result)
 
 if __name__ == '__main__':
