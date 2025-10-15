@@ -13,9 +13,11 @@ RUN pip install --no-cache-dir flask numpy pandas matplotlib scikit-learn
 # Set environment variable untuk Flask
 ENV FLASK_APP=visualization_flask/app.py
 ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=5000
 
 # Buka port Flask
 EXPOSE 5000
 
 # Jalankan aplikasi Flask
 CMD ["flask", "run"]
+
