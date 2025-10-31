@@ -1,5 +1,5 @@
 # Gunakan base image Python
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Tentukan working directory di dalam container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN pip install --no-cache-dir flask numpy pandas matplotlib scikit-learn
+RUN pip install --no-cache-dir --default-timeout=100 -r requirements.txt
 
 # Set environment variable untuk Flask
 ENV FLASK_APP=visualization_flask/app.py
